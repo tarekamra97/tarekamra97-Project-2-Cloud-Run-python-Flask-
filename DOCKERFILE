@@ -1,0 +1,21 @@
+# Use official Python image
+FROM python:3.12
+
+# Set the working directory
+WORKDIR /app
+
+# Copy the application files
+COPY . /app
+
+# Install dependencies
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Expose the port Flask runs on
+EXPOSE 8080
+
+# Set environment variable for Flask
+ENV GOOGLE_APPLICATION_CREDENTIALS=/app/gcloud-key.json
+ENV PORT=8080
+
+# Run the Flask app
+CMD ["python", "app.py"]
